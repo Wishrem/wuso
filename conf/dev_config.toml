@@ -1,0 +1,10 @@
+[service]
+HttpPort = :3000 
+
+[mysql]
+DSN = ""
+
+[redis]
+Address = ""
+Password = ""
+DatabaseName = ""
