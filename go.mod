@@ -8,13 +8,18 @@ require (
 	github.com/gofiber/websocket/v2 v2.1.5
 	github.com/gorilla/websocket v1.4.1
 	github.com/json-iterator/go v1.1.12
+	github.com/mattn/go-sqlite3 v1.14.16
 	github.com/spf13/viper v1.15.0
 	github.com/yitter/idgenerator-go v1.3.3
+	google.golang.org/genproto v0.0.0-20221227171554-f9683d7f8bef
+	gopkg.in/eapache/queue.v1 v1.1.0
 )
 
 require (
+	cloud.google.com/go/iam v0.8.0 // indirect
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/fasthttp/websocket v1.5.2 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/klauspost/compress v1.16.4 // indirect
@@ -41,8 +46,11 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.45.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
+	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
+	google.golang.org/grpc v1.52.0 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

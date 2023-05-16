@@ -23,4 +23,4 @@
 playground.go
 
 # client local cache
-conf/local
+client/local

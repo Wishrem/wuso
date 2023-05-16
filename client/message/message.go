@@ -1,33 +1,34 @@
 package message
 
-import jsoniter "github.com/json-iterator/go"
-
-var json = jsoniter.ConfigFastest
-
-type Message struct {
-}
+import (
+	"github.com/Wishrem/wuso/client/storage"
+	"github.com/Wishrem/wuso/pkg/pool"
+	"google.golang.org/genproto/googleapis/storage/v1"
+)
 
 func SendMsg(s string) error {
 	// TODO
 	return m.SendMsg(nil...)
 }
 
-func RecvMsg(bytes []byte) {
-	m.RecvMsg(bytes)
-}
+func RecvMsg(p pool.Param) {
+	var msg Message
+	if m, ok := p["msg"]; !ok {
+		return
+	} else if msg, ok = m.(Message); !ok {
+		return
+	}
 
-func RecvCmdCode(code uint8) {
+	// Storage
+	if err := storage.SaveMsg(msg); err != nil {
 
+	}
+
+	// ACK Server
+
+	// Display
 }
 
 func GetMsgs() ([]string, error) {
 	return nil, nil
-}
-
-func (m *Message) Marshal() ([]byte, error) {
-	return json.Marshal(m)
-}
-
-func (m *Message) Unmarshal(data []byte) error {
-	return json.Unmarshal(data, m)
 }
