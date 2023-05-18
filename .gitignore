@@ -22,5 +22,4 @@
 .vscode
 playground.go
 
-# client local cache
-client/local
+build/

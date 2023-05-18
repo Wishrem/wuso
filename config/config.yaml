@@ -1,0 +1,18 @@
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  database: wuso
+  username: wuso
+  password: wuso
+  charset: utf8mb4
+
+jwt:
+  secret: wuso-wishrem
+  issuer: wishrem
+  expire-time: 24h
+
+server:
+  addr: 127.0.0.1:10000
+  read-timeout: 10s
+  write-timeout: 10s
+  max-header-bytes: 1048567

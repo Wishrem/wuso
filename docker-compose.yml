@@ -1,0 +1,23 @@
+version: '3.7'
+
+networks:
+    wuso:
+        driver: bridge
+
+services:
+    mysql:
+        container_name: mysql
+        image: mysql:latest
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=wuso
+            - MYSQL_USER=wuso
+            - MYSQL_PASSWORD=wuso
+            - TZ=Asia/Shanghai
+        volumes:
+            - ./config/sql:/docker-entrypoint-initdb.d
+        ports:
+            - "3306:3306"
+        networks:
+            - wuso
