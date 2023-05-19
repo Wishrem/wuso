@@ -28,4 +28,5 @@ type server struct {
 	ReadTimeout    time.Duration `yaml:"read-timeout"`
 	WriteTimeout   time.Duration `yaml:"write-timeout"`
 	MaxHeaderBytes int           `yaml:"max-header-bytes"`
+	WithoutClient  bool          `yaml:"without-client"`
 }

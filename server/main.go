@@ -8,8 +8,10 @@ import (
 
 	"github.com/Wishrem/wuso/config"
 	"github.com/Wishrem/wuso/pkg/utils"
+	chatDal "github.com/Wishrem/wuso/server/chat/dal"
+	chat "github.com/Wishrem/wuso/server/chat/service"
 	"github.com/Wishrem/wuso/server/routes"
-	"github.com/Wishrem/wuso/server/user/dal"
+	userDal "github.com/Wishrem/wuso/server/user/dal"
 	"github.com/yitter/idgenerator-go/idgen"
 )
 
@@ -17,7 +19,11 @@ func init() {
 	path := flag.String("config", "./config", "config path")
 	flag.Parse()
 	config.Init(*path)
-	dal.Init()
+
+	chatDal.Init()
+	userDal.Init()
+
+	chat.Init(10)
 
 	opts := idgen.NewIdGeneratorOptions(0)
 	idgen.SetIdGenerator(opts)

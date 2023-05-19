@@ -11,4 +11,6 @@ var (
 	InvalidEmailFormat   = New(InvalidEmailFormatCode, "invalid email format")
 	UserNotFound         = New(UserNotFoundCode, "user not found")
 	WrongPassword        = New(WrongPasswordCode, "wrong password")
+
+	UnknownMessageType = New(UnknownMessageTypeCode, "unknown message type")
 )

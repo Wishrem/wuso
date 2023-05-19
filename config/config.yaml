@@ -16,3 +16,4 @@ server:
   read-timeout: 10s
   write-timeout: 10s
   max-header-bytes: 1048567
+  without-client: true

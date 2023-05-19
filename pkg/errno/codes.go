@@ -17,6 +17,10 @@ const (
 	InvalidEmailFormatCode
 	UserNotFoundCode
 	WrongPasswordCode
+
+	// Chat
+	UnknownMessageTypeCode
+	UpgradeFailedCode
 )
 
 const (

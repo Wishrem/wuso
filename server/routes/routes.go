@@ -16,5 +16,10 @@ func NewRouter() *gin.Engine {
 		user.POST("/login", handler.UserLoginReq)
 	}
 
+	chat := r.Group("/chat")
+	{
+		chat.GET("", handler.ChatWs)
+	}
+
 	return r
 }
