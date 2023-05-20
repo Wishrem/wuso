@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/Wishrem/wuso/server/handler"
+	"github.com/Wishrem/wuso/server/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,9 +17,9 @@ func NewRouter() *gin.Engine {
 		user.POST("/login", handler.UserLoginReq)
 	}
 
-	r.GET("/chat", handler.ChatWs)
+	r.Group("/chat").Use(middleware.JWT).GET("", handler.ChatWs)
 
-	friend := r.Group("/friend")
+	friend := r.Group("/friend").Use(middleware.JWT)
 	{
 		friend.POST("/apply", handler.ApplyFriendship)
 		friend.POST("/reply", handler.ReplyFriendshipApplication)

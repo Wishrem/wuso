@@ -4,9 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/Wishrem/wuso/config"
 	"github.com/Wishrem/wuso/pkg/errno"
-	"github.com/Wishrem/wuso/pkg/utils/jwt"
+	"github.com/Wishrem/wuso/server/consts"
 	friend "github.com/Wishrem/wuso/server/friend/service"
 	"github.com/Wishrem/wuso/server/types"
 	"github.com/gin-gonic/gin"
@@ -19,15 +18,9 @@ func ApplyFriendship(c *gin.Context) {
 		return
 	}
 
-	claims, err := jwt.Parse(req.Token, config.JWT.Secret)
-	if err != nil {
-		SendFailureResp(c, err)
-		return
-	}
-
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	if err := friend.ApplyFriendship(ctx, claims.UserId, req.ReceiverId); err != nil {
+	if err := friend.ApplyFriendship(ctx, c.GetInt64(consts.KeyUserId), req.ReceiverId); err != nil {
 		SendFailureResp(c, err)
 		return
 	}
@@ -42,15 +35,9 @@ func ReplyFriendshipApplication(c *gin.Context) {
 		return
 	}
 
-	claims, err := jwt.Parse(req.Token, config.JWT.Secret)
-	if err != nil {
-		SendFailureResp(c, err)
-		return
-	}
-
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	if err := friend.ReplyFriendshipApplication(ctx, req.SenderId, claims.UserId, req.Accept); err != nil {
+	if err := friend.ReplyFriendshipApplication(ctx, req.SenderId, c.GetInt64(consts.KeyUserId), req.Accept); err != nil {
 		SendFailureResp(c, err)
 		return
 	}
@@ -65,15 +52,9 @@ func GetFriendshipApplications(c *gin.Context) {
 		return
 	}
 
-	claims, err := jwt.Parse(req.Token, config.JWT.Secret)
-	if err != nil {
-		SendFailureResp(c, err)
-		return
-	}
-
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	resp, err := friend.GetFriendshipApplications(ctx, claims.UserId, req.Page)
+	resp, err := friend.GetFriendshipApplications(ctx, c.GetInt64(consts.KeyUserId), req.Page)
 	if err != nil {
 		SendFailureResp(c, err)
 		return
@@ -89,15 +70,9 @@ func GetFriends(c *gin.Context) {
 		return
 	}
 
-	claims, err := jwt.Parse(req.Token, config.JWT.Secret)
-	if err != nil {
-		SendFailureResp(c, err)
-		return
-	}
-
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	resp, err := friend.GetFriends(ctx, claims.UserId, req.Page)
+	resp, err := friend.GetFriends(ctx, c.GetInt64(consts.KeyUserId), req.Page)
 	if err != nil {
 		SendFailureResp(c, err)
 		return

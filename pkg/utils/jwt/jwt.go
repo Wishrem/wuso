@@ -52,10 +52,11 @@ func Parse(token string, secret []byte) (*Claims, error) {
 	} else if ve, ok := err.(*jwt.ValidationError); ok {
 		if ve.Errors^jwt.ValidationErrorExpired == 0 {
 			return nil, errno.AuthorizationExpired
-		} else {
+		}
+		if ve.Errors^jwt.ValidationErrorIssuer == 0 {
 			return nil, errno.AuthorizationFailed
 		}
 	}
 
-	return nil, err
+	return nil, errno.New(errno.AuthorizationFailedCode, err.Error())
 }

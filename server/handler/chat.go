@@ -3,10 +3,10 @@ package handler
 import (
 	"log"
 
-	"github.com/Wishrem/wuso/config"
 	"github.com/Wishrem/wuso/pkg/errno"
-	"github.com/Wishrem/wuso/pkg/utils/jwt"
 	chat "github.com/Wishrem/wuso/server/chat/service"
+	"github.com/Wishrem/wuso/server/consts"
+
 	"github.com/Wishrem/wuso/server/types"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
@@ -25,13 +25,6 @@ func ChatWs(c *gin.Context) {
 		return
 	}
 
-	claim, err := jwt.Parse(req.Token, config.JWT.Secret)
-	if err != nil {
-		log.Println(err)
-		SendFailureResp(c, err)
-		return
-	}
-
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		log.Println(err)
@@ -39,5 +32,5 @@ func ChatWs(c *gin.Context) {
 		return
 	}
 
-	chat.RegisterClient(claim.UserId, conn)
+	chat.RegisterClient(c.GetInt64(consts.KeyUserId), conn)
 }
