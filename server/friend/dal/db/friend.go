@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/Wishrem/wuso/pkg/errno"
 	"github.com/Wishrem/wuso/server/friend/model"
@@ -15,7 +16,7 @@ func GetFriendsIds(ctx context.Context, userId int64, page, items int) ([]int64,
 		return nil, errno.ExecuteTimeout
 	}
 	var friendships []model.Friendship
-	if err := DB.Table("friendship").Where("user_id1 = ? OR user_id2 = ?", userId).Find(&friendships).Limit(items).Offset(page * items).Error; err != nil {
+	if err := DB.Table("friendship").Where("user_id1 = ? OR user_id2 = ?", userId, userId).Find(&friendships).Limit(items).Offset(page * items).Error; err != nil {
 		return nil, err
 	}
 
@@ -32,6 +33,7 @@ func GetFriendsIds(ctx context.Context, userId int64, page, items int) ([]int64,
 }
 
 func HasFriendReq(senderId, receiverId int64) (bool, error) {
+	fmt.Printf("senderId %d receiverId %d", senderId, receiverId)
 	req := new(model.FriendReq)
 	err := DB.Table("friend_req").Where("sender_id = ? AND receiver_id = ?", senderId, receiverId).First(req).Error
 	if err != nil {
@@ -104,7 +106,7 @@ func GetFriendshipApplications(ctx context.Context, receiverId int64, page, item
 		return nil, errno.ExecuteTimeout
 	}
 	var reqs []model.FriendReq
-	if err := DB.Table("friendship").Where("receiver_id = ?", receiverId).Find(&reqs).Limit(items).Offset(page * items).Error; err != nil {
+	if err := DB.Table("friend_req").Where("receiver_id = ?", receiverId).Find(&reqs).Limit(items).Offset(page * items).Error; err != nil {
 		return nil, err
 	}
 	return reqs, nil
