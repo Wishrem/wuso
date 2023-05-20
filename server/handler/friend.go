@@ -25,7 +25,8 @@ func ApplyFriendship(c *gin.Context) {
 		return
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	if err := friend.ApplyFriendship(ctx, claims.UserId, req.ReceiverId); err != nil {
 		SendFailureResp(c, err)
 		return
@@ -47,7 +48,8 @@ func ReplyFriendshipApplication(c *gin.Context) {
 		return
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	if err := friend.ReplyFriendshipApplication(ctx, req.SenderId, claims.UserId, req.Accept); err != nil {
 		SendFailureResp(c, err)
 		return
@@ -69,7 +71,8 @@ func GetFriendshipApplications(c *gin.Context) {
 		return
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	resp, err := friend.GetFriendshipApplications(ctx, claims.UserId, req.Page)
 	if err != nil {
 		SendFailureResp(c, err)
@@ -92,7 +95,8 @@ func GetFriends(c *gin.Context) {
 		return
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	resp, err := friend.GetFriends(ctx, claims.UserId, req.Page)
 	if err != nil {
 		SendFailureResp(c, err)
