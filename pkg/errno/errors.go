@@ -13,4 +13,7 @@ var (
 	WrongPassword        = New(WrongPasswordCode, "wrong password")
 
 	UnknownMessageType = New(UnknownMessageTypeCode, "unknown message type")
+
+	AlreadyAppliedFriendship = New(AlreadyAppliedFriendshipCode, "already has applied")
+	ApplicationsNotFound     = New(ApplicationsNotFoundCode, "no application")
 )

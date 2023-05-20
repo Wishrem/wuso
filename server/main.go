@@ -10,6 +10,7 @@ import (
 	"github.com/Wishrem/wuso/pkg/utils"
 	chatDal "github.com/Wishrem/wuso/server/chat/dal"
 	chat "github.com/Wishrem/wuso/server/chat/service"
+	friendDal "github.com/Wishrem/wuso/server/friend/dal"
 	"github.com/Wishrem/wuso/server/routes"
 	userDal "github.com/Wishrem/wuso/server/user/dal"
 	"github.com/yitter/idgenerator-go/idgen"
@@ -21,6 +22,7 @@ func init() {
 	config.Init(*path)
 
 	chatDal.Init()
+	friendDal.Init()
 	userDal.Init()
 
 	chat.Init(10)

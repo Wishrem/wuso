@@ -10,6 +10,7 @@ import (
 	"github.com/Wishrem/wuso/pkg/utils/jwt"
 	"github.com/Wishrem/wuso/server/types"
 	"github.com/Wishrem/wuso/server/user/dal/db"
+	"github.com/Wishrem/wuso/server/user/model"
 	"github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -40,10 +41,6 @@ func CreateUser(ctx context.Context, req *types.UserRegisterReq) error {
 		return err
 	}
 	req.Password = pwd
-
-	if ctx.Err() != nil {
-		return errno.ExecuteTimeout
-	}
 
 	if err := db.CreateUser(ctx, req); err != nil {
 		mysqlErr := &mysql.MySQLError{}
@@ -82,4 +79,24 @@ func LoginUser(ctx context.Context, req *types.UserLoginReq) (*types.UserResp, e
 		},
 		Token: token,
 	}, nil
+}
+
+func GetUsers(ctx context.Context, userIds []int64) ([]types.User, error) {
+	users, err := db.GetUsersByIds(ctx, userIds)
+	if err != nil {
+		return nil, err
+	}
+	return convertToTypeUsers(users), nil
+}
+
+func convertToTypeUsers(users []model.User) []types.User {
+	us := make([]types.User, len(users))
+	for i, v := range users {
+		us[i] = types.User{
+			ID:    v.ID,
+			Email: v.Email,
+			Name:  v.Name,
+		}
+	}
+	return us
 }

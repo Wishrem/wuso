@@ -21,6 +21,10 @@ const (
 	// Chat
 	UnknownMessageTypeCode
 	UpgradeFailedCode
+
+	// Friend
+	AlreadyAppliedFriendshipCode
+	ApplicationsNotFoundCode
 )
 
 const (

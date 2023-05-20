@@ -16,9 +16,14 @@ func NewRouter() *gin.Engine {
 		user.POST("/login", handler.UserLoginReq)
 	}
 
-	chat := r.Group("/chat")
+	r.GET("/chat", handler.ChatWs)
+
+	friend := r.Group("/friend")
 	{
-		chat.GET("", handler.ChatWs)
+		friend.POST("/apply", handler.ApplyFriendship)
+		friend.POST("/reply", handler.ReplyFriendshipApplication)
+		friend.GET("/application", handler.GetFriendshipApplications)
+		friend.GET("", handler.GetFriends)
 	}
 
 	return r
