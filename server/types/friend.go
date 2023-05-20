@@ -1,8 +1,7 @@
 package types
 
 type ApplyFriendshipReq struct {
-	Token      string `json:"token" form:"token" binding:"required"`
-	ReceiverId int64  `json:"receiver_id" form:"receiver_id" binding:"required"`
+	ReceiverId int64 `json:"receiver_id" form:"receiver_id" binding:"required"`
 }
 
 type ReplyFriendshipApplicationReq struct {
@@ -12,8 +11,7 @@ type ReplyFriendshipApplicationReq struct {
 }
 
 type GetFriendsReq struct {
-	Token string `json:"token" form:"token" binding:"required"`
-	Page  int    `json:"page" form:"page" binding:"required"`
+	Page int `json:"page" form:"page" binding:"required"`
 }
 
 type GetFriendsResp struct {
@@ -22,8 +20,7 @@ type GetFriendsResp struct {
 }
 
 type GetFriendshipApplicationsReq struct {
-	Token string `json:"token" form:"token" binding:"required"`
-	Page  int    `json:"page" form:"page" binding:"required"`
+	Page int `json:"page" form:"page" binding:"required"`
 }
 
 type Application struct {

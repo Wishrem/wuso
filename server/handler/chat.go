@@ -7,7 +7,6 @@ import (
 	chat "github.com/Wishrem/wuso/server/chat/service"
 	"github.com/Wishrem/wuso/server/consts"
 
-	"github.com/Wishrem/wuso/server/types"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 )
@@ -18,13 +17,6 @@ var upgrader = websocket.Upgrader{
 }
 
 func ChatWs(c *gin.Context) {
-	req := new(types.ChatSendMsgReq)
-	if err := c.ShouldBind(req); err != nil {
-		log.Println(err)
-		SendFailureResp(c, errno.ParamError)
-		return
-	}
-
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		log.Println(err)
