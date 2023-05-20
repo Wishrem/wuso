@@ -5,8 +5,8 @@ import (
 	"log"
 
 	"github.com/Wishrem/wuso/pkg/errno"
+	"github.com/Wishrem/wuso/server/service/user/model"
 	"github.com/Wishrem/wuso/server/types"
-	"github.com/Wishrem/wuso/server/user/model"
 	"github.com/yitter/idgenerator-go/idgen"
 )
 

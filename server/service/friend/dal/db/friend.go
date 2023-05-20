@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"github.com/Wishrem/wuso/pkg/errno"
-	"github.com/Wishrem/wuso/server/friend/model"
+	"github.com/Wishrem/wuso/server/service/friend/model"
 	"github.com/yitter/idgenerator-go/idgen"
 	"gorm.io/gorm"
 )

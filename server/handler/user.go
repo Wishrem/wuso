@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/Wishrem/wuso/pkg/errno"
+	user "github.com/Wishrem/wuso/server/service/user/service"
 	"github.com/Wishrem/wuso/server/types"
-	user "github.com/Wishrem/wuso/server/user/service"
 	"github.com/gin-gonic/gin"
 )
 

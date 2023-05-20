@@ -5,10 +5,10 @@ import (
 	"errors"
 
 	"github.com/Wishrem/wuso/pkg/errno"
-	"github.com/Wishrem/wuso/server/friend/dal/db"
-	"github.com/Wishrem/wuso/server/friend/model"
+	"github.com/Wishrem/wuso/server/service/friend/dal/db"
+	"github.com/Wishrem/wuso/server/service/friend/model"
+	user "github.com/Wishrem/wuso/server/service/user/service"
 	"github.com/Wishrem/wuso/server/types"
-	user "github.com/Wishrem/wuso/server/user/service"
 	"gorm.io/gorm"
 )
 

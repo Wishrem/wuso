@@ -6,7 +6,7 @@ import (
 
 	"github.com/Wishrem/wuso/pkg/errno"
 	"github.com/Wishrem/wuso/server/consts"
-	friend "github.com/Wishrem/wuso/server/friend/service"
+	friend "github.com/Wishrem/wuso/server/service/friend/service"
 	"github.com/Wishrem/wuso/server/types"
 	"github.com/gin-gonic/gin"
 )

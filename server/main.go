@@ -8,11 +8,11 @@ import (
 
 	"github.com/Wishrem/wuso/config"
 	"github.com/Wishrem/wuso/pkg/utils"
-	chatDal "github.com/Wishrem/wuso/server/chat/dal"
-	chat "github.com/Wishrem/wuso/server/chat/service"
-	friendDal "github.com/Wishrem/wuso/server/friend/dal"
 	"github.com/Wishrem/wuso/server/routes"
-	userDal "github.com/Wishrem/wuso/server/user/dal"
+	chatDal "github.com/Wishrem/wuso/server/service/chat/dal"
+	chat "github.com/Wishrem/wuso/server/service/chat/service"
+	friendDal "github.com/Wishrem/wuso/server/service/friend/dal"
+	userDal "github.com/Wishrem/wuso/server/service/user/dal"
 	"github.com/yitter/idgenerator-go/idgen"
 )
 

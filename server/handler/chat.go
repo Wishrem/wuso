@@ -4,8 +4,8 @@ import (
 	"log"
 
 	"github.com/Wishrem/wuso/pkg/errno"
-	chat "github.com/Wishrem/wuso/server/chat/service"
 	"github.com/Wishrem/wuso/server/consts"
+	chat "github.com/Wishrem/wuso/server/service/chat/service"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
